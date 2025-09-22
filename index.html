@@ -1249,6 +1249,7 @@
             <ul class="nav-menu">
                 <!-- Inside your <ul class="nav-menu"> -->
 <li>           <a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
               <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -2001,49 +2002,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
     animate();
 });
-</script>
-    <!-- Swiper JS -->
+<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <script>
+<script>
 // Initialize Swiper for Testimonials
-document.addEventListener('DOMContentLoaded', function () {
-    const swiper = new Swiper('.testimonials-swiper', {
-        // Optional parameters
-        loop: true, // Enable loop mode
-        slidesPerView: 1, // Show one slide at a time
-        spaceBetween: 30, // Space between slides
-        // Responsive breakpoints
-        breakpoints: {
-            // when window width is >= 768px
-            768: {
-                slidesPerView: 2,
-            },
-            // when window width is >= 1024px
-            1024: {
-                slidesPerView: 3,
-            },
+const swiper = new Swiper('.testimonials-swiper', {
+    // Optional parameters
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    breakpoints: {
+        768: {
+            slidesPerView: 2,
         },
-        // Navigation arrows
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+        1024: {
+            slidesPerView: 3,
         },
-        // Pagination
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true, // Allow clicking on pagination bullets
-        },
-        // Autoplay (optional)
-        autoplay: {
-            delay: 5000, // 5 seconds
-            disableOnInteraction: false, // Keep autoplay after user interaction
-        },
-    });
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
 });
 </script>
 </body>
 </html>
+
 
 
 
