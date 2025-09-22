@@ -6,6 +6,8 @@
     <title>Kailash Singh | Developer Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         /* ==================== */
         /* Base Styles & Reset */
@@ -1121,6 +1123,80 @@
     z-index: 2; /* Above the 3D background */
 }
 
+        /* ==================== */
+/* Testimonials Section */
+/* ==================== */
+.testimonial-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.testimonial-content p {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    position: relative;
+}
+.testimonial-content p::before {
+    content: """;
+    font-size: 4rem;
+    position: absolute;
+    top: -20px;
+    left: -15px;
+    color: var(--primary);
+    opacity: 0.2;
+    font-family: Georgia, serif;
+}
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto;
+}
+.testimonial-author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.testimonial-author h4 {
+    margin-bottom: 5px;
+}
+.testimonial-author p {
+    margin: 0;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+/* Swiper Custom Styles */
+.testimonials-swiper {
+    padding: 20px 0 40px 0; /* Add padding for pagination */
+}
+.swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+}
+.swiper-pagination-bullet {
+    background: var(--gray);
+    opacity: 0.5;
+}
+.swiper-pagination-bullet-active {
+    background: var(--primary);
+    opacity: 1;
+}
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--primary);
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 1.5rem;
+}
+
         
     </style>
 </head>
@@ -1134,6 +1210,8 @@
             </a>
             
             <ul class="nav-menu">
+                <!-- Inside your <ul class="nav-menu"> -->
+<li>           <a href="#testimonials" class="nav-link">Testimonials</a></li>
               <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -1626,6 +1704,76 @@
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Consulting</a></li>
                     </ul>
                 </div>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="section bg-light">
+    <div class="container">
+        <div class="section-title">
+            <h2>Client Testimonials</h2>
+        </div>
+
+        <!-- Swiper -->
+        <div class="swiper testimonials-swiper">
+            <div class="swiper-wrapper">
+                <!-- Testimonial 1 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Kailash delivered our project on time and exceeded our expectations. His technical skills and problem-solving abilities are top-notch."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://placehold.co/60x60" alt="Client Name">
+                            <div>
+                                <h4>Thrish Vardhan</h4>
+                                <p>CEO, TechStart Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Working with Kailash was a breeze. He understood our requirements perfectly and built a fantastic web application that our users love."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://placehold.co/60x60" alt="Client Name">
+                            <div>
+                                <h4>CHANDU</h4>
+                                <p>Product Manager, InnovateX</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Kailash's attention to detail and commitment to quality are impressive. He's a reliable developer who always delivers results."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://placehold.co/60x60" alt="Client Name">
+                            <div>
+                                <h4>Bennerji</h4>
+                                <p>Founder, Creative Solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more testimonials as needed -->
+            </div>
+
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+                
                 
                 <div class="footer-col">
                     <h4>Newsletter</h4>
@@ -1824,9 +1972,49 @@ document.addEventListener('DOMContentLoaded', function () {
     animate();
 });
 </script>
-    
+    <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+// Initialize Swiper for Testimonials
+document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('.testimonials-swiper', {
+        // Optional parameters
+        loop: true, // Enable loop mode
+        slidesPerView: 1, // Show one slide at a time
+        spaceBetween: 30, // Space between slides
+        // Responsive breakpoints
+        breakpoints: {
+            // when window width is >= 768px
+            768: {
+                slidesPerView: 2,
+            },
+            // when window width is >= 1024px
+            1024: {
+                slidesPerView: 3,
+            },
+        },
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        // Pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true, // Allow clicking on pagination bullets
+        },
+        // Autoplay (optional)
+        autoplay: {
+            delay: 5000, // 5 seconds
+            disableOnInteraction: false, // Keep autoplay after user interaction
+        },
+    });
+});
+</script>
 </body>
 </html>
+
 
 
 
