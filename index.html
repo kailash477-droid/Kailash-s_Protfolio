@@ -1062,7 +1062,225 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary);
         }
-    </style>
+        <style>
+    /* All your existing CSS here... */
+
+    /* ==================== */
+    /* Login Modal Styles */
+    /* ==================== */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5);
+        backdrop-filter: blur(5px);
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 0;
+        border-radius: var(--radius);
+        width: 90%;
+        max-width: 450px;
+        box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        position: relative;
+        overflow: hidden;
+        transform: translateY(-50px);
+        animation: slideDown 0.4s ease forwards;
+    }
+    @keyframes slideDown {
+        to { transform: translateY(0); }
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        padding: 15px;
+        cursor: pointer;
+        transition: var(--transition);
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 10;
+    }
+    .close:hover,
+    .close:focus {
+        color: var(--danger);
+        text-decoration: none;
+    }
+    .login-container {
+        padding: 40px;
+    }
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .login-header h2 {
+        font-size: 1.8rem;
+        color: var(--dark);
+        margin-bottom: 10px;
+    }
+    .login-header p {
+        color: var(--gray);
+        font-size: 1rem;
+    }
+    .form-group {
+        margin-bottom: 25px;
+        position: relative;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--dark);
+        font-size: 0.9rem;
+    }
+    .form-group label i {
+        color: var(--primary);
+        margin-right: 8px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 15px;
+        padding-left: 45px;
+        border: 1px solid #ddd;
+        border-radius: var(--radius);
+        font-size: 1rem;
+        transition: var(--transition);
+        background-color: white;
+    }
+    .form-group input:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    .form-group i {
+        position: absolute;
+        left: 15px;
+        top: 42px;
+        color: var(--gray);
+        transition: var(--transition);
+    }
+    .form-group input:focus + i {
+        color: var(--primary);
+    }
+    .password-toggle {
+        position: absolute;
+        right: 15px;
+        top: 42px;
+        cursor: pointer;
+        color: var(--gray);
+        transition: var(--transition);
+    }
+    .password-toggle:hover {
+        color: var(--primary);
+    }
+    .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 0.9rem;
+    }
+    .remember-me {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--gray);
+    }
+    .remember-me input {
+        margin: 0;
+    }
+    .forgot-password {
+        color: var(--primary);
+        text-decoration: none;
+    }
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+    .btn-block {
+        width: 100%;
+        display: block;
+    }
+    .login-footer {
+        text-align: center;
+        margin-top: 25px;
+        font-size: 0.9rem;
+        color: var(--gray);
+    }
+    .login-footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .login-footer a:hover {
+        text-decoration: underline;
+    }
+    .social-login {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    .social-login p {
+        margin-bottom: 15px;
+        color: var(--gray);
+        font-size: 0.9rem;
+    }
+    .social-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    .social-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        transition: var(--transition);
+        background-color: #f8f9fa;
+    }
+    .social-btn.google {
+        background-color: #ea4335;
+        color: white;
+    }
+    .social-btn.facebook {
+        background-color: #3b5998;
+        color: white;
+    }
+    .social-btn.github {
+        background-color: #24292e;
+        color: white;
+    }
+    .social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    /* Responsive Login Modal */
+    @media (max-width: 576px) {
+        .login-container {
+            padding: 30px 20px;
+        }
+        .modal-content {
+            margin: 10% auto;
+        }
+    }
+</style>
 </head>
 <body>
     <!-- Navigation -->
@@ -1742,258 +1960,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     // You could redirect or update UI here
 });
     </script>
-                /* ==================== */
-/* Login Modal Styles */
-/* ==================== */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-    backdrop-filter: blur(5px);
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 0;
-    border-radius: var(--radius);
-    width: 90%;
-    max-width: 450px;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-    position: relative;
-    overflow: hidden;
-    transform: translateY(-50px);
-    animation: slideDown 0.4s ease forwards;
-}
-
-@keyframes slideDown {
-    to { transform: translateY(0); }
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    padding: 15px;
-    cursor: pointer;
-    transition: var(--transition);
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 10;
-}
-
-.close:hover,
-.close:focus {
-    color: var(--danger);
-    text-decoration: none;
-}
-
-.login-container {
-    padding: 40px;
-}
-
-.login-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.login-header h2 {
-    font-size: 1.8rem;
-    color: var(--dark);
-    margin-bottom: 10px;
-}
-
-.login-header p {
-    color: var(--gray);
-    font-size: 1rem;
-}
-
-.form-group {
-    margin-bottom: 25px;
-    position: relative;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--dark);
-    font-size: 0.9rem;
-}
-
-.form-group label i {
-    color: var(--primary);
-    margin-right: 8px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 15px;
-    padding-left: 45px;
-    border: 1px solid #ddd;
-    border-radius: var(--radius);
-    font-size: 1rem;
-    transition: var(--transition);
-    background-color: white;
-}
-
-.form-group input:focus {
-    border-color: var(--primary);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-}
-
-.form-group i {
-    position: absolute;
-    left: 15px;
-    top: 42px;
-    color: var(--gray);
-    transition: var(--transition);
-}
-
-.form-group input:focus + i {
-    color: var(--primary);
-}
-
-.password-toggle {
-    position: absolute;
-    right: 15px;
-    top: 42px;
-    cursor: pointer;
-    color: var(--gray);
-    transition: var(--transition);
-}
-
-.password-toggle:hover {
-    color: var(--primary);
-}
-
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    font-size: 0.9rem;
-}
-
-.remember-me {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--gray);
-}
-
-.remember-me input {
-    margin: 0;
-}
-
-.forgot-password {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.forgot-password:hover {
-    text-decoration: underline;
-}
-
-.btn-block {
-    width: 100%;
-    display: block;
-}
-
-.login-footer {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 0.9rem;
-    color: var(--gray);
-}
-
-.login-footer a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.login-footer a:hover {
-    text-decoration: underline;
-}
-
-.social-login {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.social-login p {
-    margin-bottom: 15px;
-    color: var(--gray);
-    font-size: 0.9rem;
-}
-
-.social-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.social-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: var(--transition);
-    background-color: #f8f9fa;
-}
-
-.social-btn.google {
-    background-color: #ea4335;
-    color: white;
-}
-
-.social-btn.facebook {
-    background-color: #3b5998;
-    color: white;
-}
-
-.social-btn.github {
-    background-color: #24292e;
-    color: white;
-}
-
-.social-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-/* Responsive Login Modal */
-@media (max-width: 576px) {
-    .login-container {
-        padding: 30px 20px;
-    }
-    
-    .modal-content {
-        margin: 10% auto;
-    }
-}
+        
     <!-- Login Modal -->
 <div id="loginModal" class="modal">
     <div class="modal-content">
@@ -2045,6 +2012,52 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         </div>
     </div>
 </div>
-</body>
+    <script>
+    // Login Modal Functionality
+    const loginModal = document.getElementById('loginModal');
+    const loginBtn = document.getElementById('loginBtn');
+    const closeBtn = document.querySelector('.close');
 
+    // Open modal when login button is clicked
+    loginBtn.onclick = function() {
+        loginModal.style.display = "block";
+    }
+
+    // Close modal when X is clicked
+    closeBtn.onclick = function() {
+        loginModal.style.display = "none";
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == loginModal) {
+            loginModal.style.display = "none";
+        }
+    }
+
+    // Toggle password visibility
+    function togglePassword() {
+        const password = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        
+        if (password.type === 'password') {
+            password.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            password.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    }
+
+    // Handle form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Login attempt submitted!');
+        loginModal.style.display = "none";
+    });
+</script>
+</body>
 </html>
+
