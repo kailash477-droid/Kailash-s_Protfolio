@@ -1062,6 +1062,25 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary);
         }
+        /* Make project cards fully clickable */
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Important to fill the parent div */
+    height: 100%;
+}
+
+.project-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Ensure the content div fills the link */
+.project-link .project-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
     </style>
 </head>
 <body>
@@ -1298,18 +1317,21 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>My Projects</h2>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card fade-in-up">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="E-commerce Platform">
-                        <div class="project-badge">Featured</div>
-                    </div>
+<!-- Projects Section -->
+<section id="projects" class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>My Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <!-- Project Card 1 -->
+            <div class="project-card fade-in-up">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="E-commerce Platform">
+                    <div class="project-badge">Featured</div>
+                </div>
+                <!-- Wrap content in a link -->
+                <a href="project1.html" class="project-link">
                     <div class="project-content">
                         <h3>E-commerce Platform</h3>
                         <p>A full-featured online shopping platform with payment integration, inventory management, and admin dashboard.</p>
@@ -1320,22 +1342,25 @@
                             <span class="tech-badge">Stripe API</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn btn-primary btn-sm btn-icon">
+                            <a href="https://example.com/live-demo1" target="_blank" class="btn btn-primary btn-sm btn-icon">
                                 <i class="fas fa-external-link-alt"></i>
                                 <span>Live Demo</span>
                             </a>
-                            <a href="#" class="btn btn-outline btn-sm btn-icon">
+                            <a href="https://github.com/yourusername/project1" target="_blank" class="btn btn-outline btn-sm btn-icon">
                                 <i class="fab fa-github"></i>
                                 <span>GitHub</span>
                             </a>
                         </div>
                     </div>
+                </a>
+            </div>
+            <!-- Project Card 2 -->
+            <div class="project-card fade-in-up delay-1">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Task Management App">
                 </div>
-                
-                <div class="project-card fade-in-up delay-1">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Task Management App">
-                    </div>
+                <!-- Wrap content in a link -->
+                <a href="project2.html" class="project-link">
                     <div class="project-content">
                         <h3>Task Management App</h3>
                         <p>A productivity application for teams to manage projects, assign tasks, and track progress with real-time updates.</p>
@@ -1345,22 +1370,25 @@
                             <span class="tech-badge">Vuex</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn btn-primary btn-sm btn-icon">
+                            <a href="https://example.com/live-demo2" target="_blank" class="btn btn-primary btn-sm btn-icon">
                                 <i class="fas fa-external-link-alt"></i>
                                 <span>Live Demo</span>
                             </a>
-                            <a href="#" class="btn btn-outline btn-sm btn-icon">
+                            <a href="https://github.com/yourusername/project2" target="_blank" class="btn btn-outline btn-sm btn-icon">
                                 <i class="fab fa-github"></i>
                                 <span>GitHub</span>
                             </a>
                         </div>
                     </div>
+                </a>
+            </div>
+            <!-- Project Card 3 -->
+            <div class="project-card fade-in-up delay-2">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Weather Dashboard">
                 </div>
-                
-                <div class="project-card fade-in-up delay-2">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Weather Dashboard">
-                    </div>
+                <!-- Wrap content in a link -->
+                <a href="project3.html" class="project-link">
                     <div class="project-content">
                         <h3>Weather Dashboard</h3>
                         <p>A responsive weather application that displays current conditions and forecasts for any location worldwide.</p>
@@ -1370,26 +1398,27 @@
                             <span class="tech-badge">Chart.js</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn btn-primary btn-sm btn-icon">
+                            <a href="https://example.com/live-demo3" target="_blank" class="btn btn-primary btn-sm btn-icon">
                                 <i class="fas fa-external-link-alt"></i>
                                 <span>Live Demo</span>
                             </a>
-                            <a href="#" class="btn btn-outline btn-sm btn-icon">
+                            <a href="https://github.com/yourusername/project3" target="_blank" class="btn btn-outline btn-sm btn-icon">
                                 <i class="fab fa-github"></i>
                                 <span>GitHub</span>
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="text-center" style="margin-top: 40px;">
-                <a href="#" class="btn btn-accent btn-lg btn-rounded btn-icon">
-                    <i class="fas fa-folder-open"></i>
-                    <span>View All Projects</span>
                 </a>
             </div>
         </div>
-    </section>
+        <div class="text-center" style="margin-top: 40px;">
+            <a href="projects.html" class="btn btn-accent btn-lg btn-rounded btn-icon">
+                <i class="fas fa-folder-open"></i>
+                <span>View All Projects</span>
+            </a>
+        </div>
+    </div>
+</section>  
 
     <!-- Services Section -->
     <section id="services" class="section services">
@@ -1639,3 +1668,4 @@
     </script>
 </body>
 </html>
+
