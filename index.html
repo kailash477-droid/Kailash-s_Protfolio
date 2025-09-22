@@ -1081,6 +1081,32 @@
     display: flex;
     flex-direction: column;
 }
+        /* Ensure smooth transitions */
+.skill-progress {
+    height: 12px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 6px;
+    position: relative;
+    width: 0;
+    transition: width 1.5s ease-in-out;
+}
+
+/* Optional: Add a shine effect */
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: progress-shine 2s infinite;
+}
+
+@keyframes progress-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
     </style>
 </head>
 <body>
@@ -1629,22 +1655,24 @@
             });
             
             // Animate skill bars when they come into view
-            const skillBars = document.querySelectorAll('.skill-progress');
-            
-            const animateSkillBars = () => {
-                skillBars.forEach(bar => {
-                    const barPosition = bar.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.3;
-                    
-                    if (barPosition < screenPosition) {
-                        const width = bar.style.width;
-                        bar.style.width = '0';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 100);
-                    }
-                });
-            };
+const skillBars = document.querySelectorAll('.skill-progress');
+const animateSkillBars = () => {
+    skillBars.forEach(bar => {
+        const barPosition = bar.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+
+        // Only animate if the bar is visible and hasn't been animated yet
+        if (barPosition < screenPosition && !bar.classList.contains('animated')) {
+            const targetWidth = bar.style.width; // e.g., "95%"
+            bar.style.width = '0'; // Start from 0
+            bar.classList.add('animated'); // Prevent re-animation
+
+            // Add smooth transition and set final width
+            bar.style.transition = 'width 1.5s ease-in-out';
+            bar.style.width = targetWidth;
+        }
+    });
+};
             
             window.addEventListener('scroll', animateSkillBars);
             // Initial check
@@ -1668,5 +1696,6 @@
     </script>
 </body>
 </html>
+
 
 
