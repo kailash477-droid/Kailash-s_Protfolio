@@ -710,10 +710,6 @@
         .contact-text h4 {
             margin-bottom: 5px;
         }
-        .contact-btn {
-  position: relative;
-  z-index: 10; /* Bring it to front */
-}
 
         .contact-text p, .contact-text a {
             color: var(--gray);
@@ -1066,21 +1062,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary);
         }
-        /* ==================== */
-/* Hero 3D Background */
-/* ==================== */
-#hero-3d-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Behind content */
-}
-.hero-content {
-    position: relative;
-    z-index: 2; /* Above the 3D background */
-}
     </style>
 </head>
 <body>
@@ -1124,7 +1105,7 @@
                         <i class="fas fa-briefcase"></i>
                         <span>View Projects</span>
                     </a>
-                    <a href="#contact" class="btn btn-outline btn-lg btn-rounded btn-icon"></a>
+                    <a href="#contact" class="btn btn-outline btn-lg btn-rounded btn-icon">
                         <i class="fas fa-envelope"></i>
                         <span>Contact Me</span>
                     </a>
@@ -1180,11 +1161,6 @@
                         <a href="#contact" class="btn btn-outline btn-icon" style="margin-left: 15px;">
                             <i class="fas fa-paper-plane"></i>
                             <span>Send Message</span>
-                             <!-- Inside <section class="hero"> <div class="container hero-content"> -->
- <!-- ... existing hero text and image ... -->
- <div id="hero-3d-background"></div> <!-- Add this div -->
- <!-- </div> hero-content -->
-</section>
                         </a>
                     </div>
                 </div>
@@ -1661,116 +1637,5 @@
             });
         });
     </script>
-    <!-- Add this before </body> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Add this before </body> -->
-    <script>
-// --- Three.js Background Animation ---
-document.addEventListener('DOMContentLoaded', function () {
-    // Check if the hero section exists
-    const heroSection = document.querySelector('.hero');
-    if (!heroSection) return;
-
-    // Create scene, camera, renderer
-    const scene = new THREE.Scene();
-    // Use a wider field of view for a more subtle background effect
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight / 2), 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true }); // Alpha for transparency
-    renderer.setSize(window.innerWidth, window.innerHeight / 2); // Adjust height if needed
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    // Append renderer to the hero section container
-    const container = document.getElementById('hero-3d-background');
-    if (container) {
-        container.appendChild(renderer.domElement);
-    } else {
-        console.error("3D Background container not found");
-        return;
-    }
-
-
-    // --- Create Floating Geometric Shapes ---
-    const shapes = [];
-    const shapeCount = 20; // Number of shapes
-
-    const geometryTypes = [
-        new THREE.IcosahedronGeometry(0.5, 0), // Sphere-like
-        new THREE.BoxGeometry(0.7, 0.7, 0.7), // Cube
-        new THREE.ConeGeometry(0.5, 1, 4),     // Pyramid
-        new THREE.TorusGeometry(0.5, 0.2, 16, 100) // Donut
-    ];
-
-    for (let i = 0; i < shapeCount; i++) {
-        // Randomly select a geometry type
-        const geometry = geometryTypes[Math.floor(Math.random() * geometryTypes.length)];
-        // Basic white material with some transparency
-        const material = new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            wireframe: true, // Wireframe looks good for background
-            transparent: true,
-            opacity: 0.2 // Very subtle
-        });
-        const shape = new THREE.Mesh(geometry, material);
-
-        // Random position
-        shape.position.x = (Math.random() - 0.5) * 20;
-        shape.position.y = (Math.random() - 0.5) * 10;
-        shape.position.z = (Math.random() - 0.5) * 10;
-
-        // Random rotation speed
-        shape.userData = {
-            rotationSpeed: {
-                x: Math.random() * 0.01,
-                y: Math.random() * 0.01
-            },
-            // Optional: Add subtle movement
-            velocity: new THREE.Vector3(
-                (Math.random() - 0.5) * 0.01,
-                (Math.random() - 0.5) * 0.01,
-                (Math.random() - 0.5) * 0.01
-            )
-        };
-
-        scene.add(shape);
-        shapes.push(shape);
-    }
-
-    // Position camera
-    camera.position.z = 5;
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / (window.innerHeight / 2);
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight / 2);
-    });
-
-    // Animation loop
-    const animate = function () {
-        requestAnimationFrame(animate);
-
-        // Rotate and move shapes
-        shapes.forEach(shape => {
-            shape.rotation.x += shape.userData.rotationSpeed.x;
-            shape.rotation.y += shape.userData.rotationSpeed.y;
-            // Optional subtle movement
-            // shape.position.add(shape.userData.velocity);
-            // Simple boundary check (wrap around or bounce back)
-            // This is simplified, you might want more robust bounds
-            // if (Math.abs(shape.position.x) > 10) shape.userData.velocity.x *= -1;
-            // if (Math.abs(shape.position.y) > 5) shape.userData.velocity.y *= -1;
-            // if (Math.abs(shape.position.z) > 5) shape.userData.velocity.z *= -1;
-        });
-
-        renderer.render(scene, camera);
-    };
-
-    animate();
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </body>
 </html>
-
-
-
